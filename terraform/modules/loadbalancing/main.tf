@@ -85,7 +85,7 @@ resource "aws_lb_target_group" "target_group" {
     path                = "/ping"
     interval            = 3
     timeout             = 2
-    healthy_threshold   = 1
+    healthy_threshold   = 2
     unhealthy_threshold = 2
     matcher             = "200-499"
   }
