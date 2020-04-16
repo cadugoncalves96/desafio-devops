@@ -6,6 +6,14 @@ provider "aws" {
     region          = var.region
 }
 
+terraform {
+  backend "s3" {
+    bucket          = "bucket.training"
+    key             = "api.tfstates"
+    region          = "us-east-1"
+  }
+}
+
 module "compute" {
   source = "./modules/compute"
   env               = var.env
