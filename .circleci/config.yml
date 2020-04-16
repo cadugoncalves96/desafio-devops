@@ -6,14 +6,24 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Test code
+          name: Run application tests
           command: |
             pip3 install pipenv
             cd base-test-api/
             pipenv install
             BASE_API_ENV=test pipenv run pytest
+  build-docker:
+    machine: true
+    steps:
+      - checkout
+      - run: |
+          echo "$DOCKER_PASS" | docker login --username $DOCKER_USER --password-stdin
+      - run: docker build -t cadugoncalves96/ping-pong:latest -t .
+      - run: docker push cadugoncalves96/ping-pong:latest
 workflows:
   version: 2.1
   tests:
     jobs:
       - tests
+  build-and-deploy:
+      - build-docker
