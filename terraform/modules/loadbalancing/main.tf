@@ -83,9 +83,9 @@ resource "aws_lb_target_group" "target_group" {
     port                = 8080
     protocol            = "HTTP"
     path                = "/ping"
-    interval            = 3
+    interval            = 5
     timeout             = 2
-    healthy_threshold   = 2
+    healthy_threshold   = 3
     unhealthy_threshold = 2
     matcher             = "200-499"
   }
