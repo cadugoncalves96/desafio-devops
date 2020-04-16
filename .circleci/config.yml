@@ -10,9 +10,8 @@ jobs:
             cd base-test-api/
             pipenv install
             BASE_API_ENV=test pipenv run pytest
-
 workflows:
-  version: 2
+  version: 2.1
   tests:
     jobs:
       - tests
