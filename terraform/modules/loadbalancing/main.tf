@@ -82,7 +82,7 @@ resource "aws_lb_target_group" "target_group" {
     enabled             = true
     port                = 8080
     protocol            = "HTTP"
-    path                = "/ping"
+    path                = "/api/ping"
     interval            = 5
     timeout             = 2
     healthy_threshold   = 3
