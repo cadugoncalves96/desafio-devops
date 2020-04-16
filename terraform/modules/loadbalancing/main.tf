@@ -39,7 +39,7 @@ resource "aws_lb_listener_rule" "lb_listener_rule" {
 
   condition {
     field             = "host-header"
-    values            = ["${var.domain_name}"]
+    values            = ["${var.api_name}.${var.domain_name}"]
   }
 
 }
@@ -68,7 +68,7 @@ resource "aws_lb_listener_rule" "lb_listener_rule_ssl" {
 
   condition {
     field             = "host-header"
-    values            = ["${var.domain_name}"]
+    values            = ["${var.api_name}.${var.domain_name}"]
   }
 }
 
@@ -96,4 +96,16 @@ resource "aws_lb_target_group" "target_group" {
     App     = "${var.app}"
   }
 
+}
+
+resource "aws_route53_record" "app_route" {
+  zone_id = "Z10388502AP1GZGZ4FSGF"
+  name    = "${var.api_name}.${var.domain_name}"
+  type    = "A"
+
+  alias {
+    name                   = "${aws_lb.load_balancer.dns_name}"
+    zone_id                = "${aws_lb.load_balancer.zone_id}"
+    evaluate_target_health = true
+  }
 }

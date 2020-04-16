@@ -15,11 +15,11 @@ data "aws_ami" "ubuntu" {
 }
 
 resource "aws_launch_configuration" "launch_config" {
-  image_id                    = data.aws_ami.ubuntu
+  image_id                    = data.aws_ami.ubuntu.image_id
   instance_type               = var.instance_type
   key_name                    = var.instance_key_name
   security_groups             = [var.lc_sec_group]
-  user_data                   = templatefile("./user_data/config.sh", null)
+  user_data                   = templatefile("./user_data/config.sh", { env = "${var.env}", app_tag = "${var.app_tag}" })
   
   lifecycle {
     create_before_destroy     = true

@@ -1,5 +1,6 @@
 variable env {}
 variable app {}
+variable "app_tag" {}
 variable minimum_scale {}
 variable maximum_scale {}
 variable desired_scale {}

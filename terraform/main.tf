@@ -1,23 +1,16 @@
 terraform {
-  required_version  = ">= 0.12.9"
+  required_version  = ">= 0.12.13"
 }
 
 provider "aws" {
-    region          = var.env
-}
-
-terraform {
-  backend "s3" {
-    bucket          = "my-terraform-states"
-    key             = "api.tfstates"
-    region          = "us-east-1"
-  }
+    region          = var.region
 }
 
 module "compute" {
   source = "./modules/compute"
   env               = var.env
   app               = var.app
+  app_tag           = var.app_tag
   minimum_scale     = var.minimum_scale
   maximum_scale     = var.maximum_scale
   desired_scale     = var.desired_scale
@@ -37,6 +30,7 @@ module "loadbalancing" {
   vpc_id                = var.vpc_id
   domain_name           = var.domain_name
   lb_certificate        = var.lb_certificate
+  api_name              = var.api_name
 }
 
 module "security" { 

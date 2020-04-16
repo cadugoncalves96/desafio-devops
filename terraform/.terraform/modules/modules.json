@@ -1,0 +1,1 @@
+{"Modules":[{"Key":"","Source":"","Dir":"."},{"Key":"compute","Source":"./modules/compute","Dir":"modules/compute"},{"Key":"loadbalancing","Source":"./modules/loadbalancing","Dir":"modules/loadbalancing"},{"Key":"scale_rules","Source":"./modules/scale_rules","Dir":"modules/scale_rules"},{"Key":"security","Source":"./modules/security","Dir":"modules/security"}]}

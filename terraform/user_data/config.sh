@@ -15,9 +15,8 @@ sudo add-apt-repository \
    stable"
 sudo apt-get update -y
 sudo apt-get install -y docker-ce docker-ce-cli containerd.io
-sudo docker login -u ${registry_user} -p ${registry_pwd} ${registry_url} 
 sudo docker run -it --log-opt max-size=10m --log-opt max-file=3 \
                     -p 8080:8080 \
-                    -d --name ${app} ${registry_url}/${app}:${app_tag}
-sudo touch /var/log/${app}-${env}.log
-sudo docker logs -f ${app} &> /var/log/${app}-${env}.log &
+                    -d --name ping-pong cadugoncalves96/ping-pong:${app_tag}
+sudo touch /var/log/ping-pong-${env}.log
+sudo docker logs -f ping-pong &> /var/log/ping-pong-${env}.log &

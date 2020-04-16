@@ -5,3 +5,4 @@ variable target_subnet_ids {}
 variable vpc_id {}
 variable "domain_name" {}
 variable "lb_certificate" {}
+variable "api_name" {}

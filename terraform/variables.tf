@@ -27,6 +27,8 @@ variable app {
     type = string
 }
 
+variable "app_tag" {}
+
 variable instance_key_name {
     description = "The keypair used to access the ec2 instances."
     type = string
@@ -49,7 +51,6 @@ variable "domain_name" {
 
 variable "public_subnet_ids" {
     description = ""
-    type = string
 }
 
 variable "vpc_id" {
@@ -59,10 +60,11 @@ variable "vpc_id" {
 
 variable "private_subnet_ids" {
     description = ""
-    type = string
 }
 
 variable "region" {
     description = ""
     type = string
 }
+
+variable "api_name" {}
