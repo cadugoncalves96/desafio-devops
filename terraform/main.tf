@@ -8,7 +8,7 @@ provider "aws" {
 
 terraform {
   backend "s3" {
-    bucket          = ""
+    bucket          = "bucket.training"
     key             = "api.tfstates"
     region          = "us-east-1"
   }
