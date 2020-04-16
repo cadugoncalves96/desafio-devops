@@ -18,7 +18,7 @@ jobs:
       - checkout
       - run: |
           echo "$DOCKER_PASS" | docker login --username $DOCKER_USER --password-stdin
-      - run: docker build -t cadugoncalves96/ping-pong:latest -t .
+      - run: docker build -t cadugoncalves96/ping-pong:latest .
       - run: docker push cadugoncalves96/ping-pong:latest
 workflows:
   version: 2.1
