@@ -23,7 +23,7 @@ module "compute" {
   maximum_scale     = var.maximum_scale
   desired_scale     = var.desired_scale
   target_group_arn  = module.loadbalancing.target_group_arn
-  target_subnet_ids = var.private_subnet_ids
+  target_subnet_ids = var.public_subnet_ids
   lc_sec_group      = module.security.sg_app_id
   instance_key_name = var.instance_key_name
   instance_type     = var.instance_type
