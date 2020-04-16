@@ -34,10 +34,10 @@ workflows:
     jobs:
       - tests
   build-and-deploy:
+    requires:
+      - tests
     jobs:
       - build-docker
-        requires:
-          - tests
       - run-terraform:
           requires:
             - build-docker
