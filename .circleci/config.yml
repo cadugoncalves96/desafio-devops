@@ -20,11 +20,23 @@ jobs:
           echo "$DOCKER_PASS" | docker login --username $DOCKER_USER --password-stdin
       - run: docker build -t cadugoncalves96/ping-pong:latest .
       - run: docker push cadugoncalves96/ping-pong:latest
+  run-terraform:
+    docker:
+      - image: hashicorp/terraform:light
+    steps:
+      - checkout
+      - run: |
+          cd terraform && terraform init
+      - run: terraform apply -var-file="production.tfvars"
 workflows:
   version: 2.1
   tests:
     jobs:
       - tests
   build-and-deploy:
+    requires:
+      - tests
     jobs:
       - build-docker
+      - run-terraform:
+          requires: build-docker
