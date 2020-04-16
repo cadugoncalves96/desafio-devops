@@ -1,9 +1,12 @@
 resource "aws_lb" "load_balancer" {
   name                       = "lb-${var.app}-${var.env}"
-  internal                   = "false"
+  internal                   = false
   load_balancer_type         = "application"
   security_groups            = [var.lb_sec_group]
   subnets                    = var.target_subnet_ids
+  
+  idle_timeout       = "120"
+
   enable_deletion_protection = false
 
   tags = {
@@ -19,8 +22,13 @@ resource "aws_lb_listener" "loadbalancer_listener" {
   protocol            = "HTTP"
 
   default_action {
-    target_group_arn  = "${aws_lb_target_group.target_group.arn}"
-    type              = "forward"
+    type = "redirect"
+
+    redirect {
+      port        = "443"
+      protocol    = "HTTPS"
+      status_code = "HTTP_301"
+    }
   }
 }
 

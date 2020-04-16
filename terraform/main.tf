@@ -34,7 +34,7 @@ module "loadbalancing" {
   env                   = var.env
   app                   = var.app
   lb_sec_group          = module.security.sg_alb_id
-  target_subnet_ids     = var.private_subnet_ids
+  target_subnet_ids     = var.public_subnet_ids
   vpc_id                = var.vpc_id
   domain_name           = var.domain_name
   lb_certificate        = var.lb_certificate
