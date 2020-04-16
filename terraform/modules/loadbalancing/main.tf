@@ -39,11 +39,7 @@ resource "aws_lb_listener_rule" "lb_listener_rule" {
 
   condition {
     field             = "host-header"
-<<<<<<< HEAD
     values            = ["${var.api_name}.${var.domain_name}"]
-=======
-    values            = ["${var.domain_name}"]
->>>>>>> fa1b887aeb0505b96e24a197a158315958912e44
   }
 
 }
@@ -72,17 +68,13 @@ resource "aws_lb_listener_rule" "lb_listener_rule_ssl" {
 
   condition {
     field             = "host-header"
-<<<<<<< HEAD
     values            = ["${var.api_name}.${var.domain_name}"]
-=======
-    values            = ["${var.domain_name}"]
->>>>>>> fa1b887aeb0505b96e24a197a158315958912e44
   }
 }
 
 resource "aws_lb_target_group" "target_group" {
   name     = "tg-${var.app}-${var.env}"
-  port     = 80
+  port     = 8080
   protocol = "HTTP"
   vpc_id   = var.vpc_id
 
@@ -91,9 +83,9 @@ resource "aws_lb_target_group" "target_group" {
     port                = 8080
     protocol            = "HTTP"
     path                = "/ping"
-    interval            = 5
+    interval            = 3
     timeout             = 2
-    healthy_threshold   = 3
+    healthy_threshold   = 1
     unhealthy_threshold = 2
     matcher             = "200-499"
   }
@@ -105,10 +97,9 @@ resource "aws_lb_target_group" "target_group" {
   }
 
 }
-<<<<<<< HEAD
 
 resource "aws_route53_record" "app_route" {
-  zone_id = "Z10388502AP1GZGZ4FSGF"
+  zone_id = var.zone_id
   name    = "${var.api_name}.${var.domain_name}"
   type    = "A"
 
@@ -118,5 +109,3 @@ resource "aws_route53_record" "app_route" {
     evaluate_target_health = true
   }
 }
-=======
->>>>>>> fa1b887aeb0505b96e24a197a158315958912e44

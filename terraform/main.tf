@@ -31,6 +31,7 @@ module "loadbalancing" {
   domain_name           = var.domain_name
   lb_certificate        = var.lb_certificate
   api_name              = var.api_name
+  zone_id               = var.zone_id
 }
 
 module "security" { 

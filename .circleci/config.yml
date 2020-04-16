@@ -27,7 +27,7 @@ jobs:
       - checkout
       - run: |
           cd terraform && terraform init
-      - run: terraform apply -var-file="production.tfvars"
+      - run: terraform apply -var-file="production.tfvars" -auto-approve
 workflows:
   version: 2.1
   tests:

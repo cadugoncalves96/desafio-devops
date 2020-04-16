@@ -54,8 +54,7 @@ variable "public_subnet_ids" {
 }
 
 variable "vpc_id" {
-    description = ""
-    type = string
+    default = ""
 }
 
 variable "private_subnet_ids" {
@@ -69,3 +68,4 @@ variable "region" {
 
 variable "api_name" {}
 
+variable "zone_id" {}
