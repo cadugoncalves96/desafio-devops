@@ -1,8 +1,6 @@
-version: 2
+version: 2.1
 jobs:
   tests:
-    docker:
-      - image: python:3.6-slim-stretch
     steps:
       - checkout
       - run:
@@ -12,3 +10,9 @@ jobs:
             cd base-test-api/
             pipenv install
             BASE_API_ENV=test pipenv run pytest
+
+workflows:
+  version: 2
+  tests:
+    jobs:
+      - tests
