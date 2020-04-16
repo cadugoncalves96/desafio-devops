@@ -15,11 +15,19 @@ data "aws_ami" "ubuntu" {
 }
 
 resource "aws_launch_configuration" "launch_config" {
+<<<<<<< HEAD
   image_id                    = data.aws_ami.ubuntu.image_id
   instance_type               = var.instance_type
   key_name                    = var.instance_key_name
   security_groups             = [var.lc_sec_group]
   user_data                   = templatefile("./user_data/config.sh", { env = "${var.env}", app_tag = "${var.app_tag}" })
+=======
+  image_id                    = data.aws_ami.ubuntu
+  instance_type               = var.instance_type
+  key_name                    = var.instance_key_name
+  security_groups             = [var.lc_sec_group]
+  user_data                   = templatefile("./user_data/config.sh", null)
+>>>>>>> fa1b887aeb0505b96e24a197a158315958912e44
   
   lifecycle {
     create_before_destroy     = true
@@ -58,4 +66,8 @@ resource "aws_autoscaling_group" "autoscaling_group" {
   lifecycle {
     create_before_destroy     = true
   }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> fa1b887aeb0505b96e24a197a158315958912e44

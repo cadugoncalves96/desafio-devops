@@ -39,7 +39,11 @@ resource "aws_lb_listener_rule" "lb_listener_rule" {
 
   condition {
     field             = "host-header"
+<<<<<<< HEAD
     values            = ["${var.api_name}.${var.domain_name}"]
+=======
+    values            = ["${var.domain_name}"]
+>>>>>>> fa1b887aeb0505b96e24a197a158315958912e44
   }
 
 }
@@ -68,7 +72,11 @@ resource "aws_lb_listener_rule" "lb_listener_rule_ssl" {
 
   condition {
     field             = "host-header"
+<<<<<<< HEAD
     values            = ["${var.api_name}.${var.domain_name}"]
+=======
+    values            = ["${var.domain_name}"]
+>>>>>>> fa1b887aeb0505b96e24a197a158315958912e44
   }
 }
 
@@ -97,6 +105,7 @@ resource "aws_lb_target_group" "target_group" {
   }
 
 }
+<<<<<<< HEAD
 
 resource "aws_route53_record" "app_route" {
   zone_id = "Z10388502AP1GZGZ4FSGF"
@@ -109,3 +118,5 @@ resource "aws_route53_record" "app_route" {
     evaluate_target_health = true
   }
 }
+=======
+>>>>>>> fa1b887aeb0505b96e24a197a158315958912e44
