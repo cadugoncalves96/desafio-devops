@@ -30,14 +30,12 @@ jobs:
       - run: terraform apply -var-file="production.tfvars" -auto-approve
 workflows:
   version: 2.1
-  tests:
+  test-build-deploy:
     jobs:
       - tests
-  build-and-deploy:
-    requires:
-      - tests
-    jobs:
-      - build-docker
+      - build-docker:
+          requires:
+            - tests
       - run-terraform:
           requires:
             - build-docker
